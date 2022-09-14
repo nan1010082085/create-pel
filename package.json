@@ -5,11 +5,15 @@
   "main": "src/index.js",
   "type": "module",
   "scripts": {
-    "test": "node bin/index.js",
-    "build": "yarn rimraf && yarn build:dist",
-    "rimraf": "rimraf dist",
-    "build:dist": "rollup -c"
+    "test": "node bin/index.js"
   },
+  "files": [
+    "dist",
+    "bin",
+    "node_modules",
+    "README.md",
+    "package.json"
+  ],
   "bin": {
     "pel": "bin/index.js"
   },
@@ -17,7 +21,10 @@
   "license": "ISC",
   "dependencies": {
     "commander": "^9.4.0",
-    "inquirer": "^9.1.1"
+    "inquirer": "^9.1.1",
+    "kolorist": "^1.6.0",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.79.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.18.10",
@@ -25,11 +32,13 @@
     "@babel/node": "^7.18.10",
     "@babel/plugin-transform-runtime": "^7.18.10",
     "@babel/preset-env": "^7.18.10",
+    "@rollup/plugin-commonjs": "^22.0.2",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^14.1.0",
     "@types/inquirer": "^9.0.1",
     "@types/node": "^18.7.14",
     "@types/rimraf": "^3.0.2",
-    "kolorist": "^1.6.0",
     "minimist": "^1.2.6",
-    "rimraf": "^3.0.2"
+    "rollup-plugin-copy": "^3.4.0"
   }
 }
