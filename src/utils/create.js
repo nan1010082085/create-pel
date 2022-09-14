@@ -1,26 +1,32 @@
-// const path = require('path');
-// const fs = require('fs');
-// const { green } = require('kolorist');
 import path from 'path';
 import fs from 'fs';
-import { green } from 'kolorist';
+import { green, cyan } from 'kolorist';
+import { fileURLToPath } from 'url';
 
 export function resolve(str) {
-  return path.join(__dirname, '..', str);
+  const __filename = fileURLToPath(import.meta.url);
+  const __dirname = path.dirname(__filename);
+  return path.join(__dirname, '../..', str);
 }
 
-export function mkdir(path) {
-  return fs.mkdirSync(resolve(path));
+function spliceLast(path) {
+  let strArr = path.split('/');
+  return strArr[strArr.length - 1];
+}
+
+function mkdir(path) {
+  console.log(cyan(`created folder ${spliceLast(path)}`));
+  return fs.mkdirSync(path);
 }
 
 export function createdFileChild(file, root) {
   const chart = fs.readdirSync(file);
-  chart.forEach((filename) => {
+  chart.forEach((filename, i) => {
     let currentPath = `${root}/${filename}`;
-    console.log(green(`created file ${currentPath}`));
     if (filename.includes('.')) {
+      console.log(cyan(`created file ${spliceLast(currentPath)}`));
       // 创建文件
-      fs.writeFileSync(resolve(currentPath), '');
+      fs.writeFileSync(currentPath, '');
       let rsPath = `${file}/${filename}`;
       let wsPath = `${currentPath}`;
       const rs = fs.createReadStream(rsPath);
@@ -34,11 +40,8 @@ export function createdFileChild(file, root) {
       let childRootPath = `${root}/${filename}`;
       createdFileChild(childFile, childRootPath);
     }
+    // if (i === chart.length - 1) {
+    //   console.log(green(`created [ ${spliceLast(root)} ] success`));
+    // }
   });
 }
-
-// module.exports = {
-//   resolve,
-//   mkdir,
-//   createdFileChild
-// };
