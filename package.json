@@ -1,5 +1,5 @@
 {
-  "name": "widget",
+  "name": "create-pel",
   "version": "1.0.0",
   "description": "create pel widget",
   "main": "src/index.js",
@@ -11,7 +11,7 @@
     "build:dist": "rollup -c"
   },
   "bin": {
-    "widget": "bin/index.js"
+    "pel": "bin/index.js"
   },
   "author": "Yan Dong nan",
   "license": "ISC",
