@@ -19,7 +19,6 @@ const questions = [
 function matchFile(name) {
   let file = resolve(`packages/template-${type}`);
   let isRootFile = fs.readdirSync(process.cwd());
-  console.log(isRootFile);
   if ((Array.isArray(isRootFile) && !isRootFile.includes(name)) || !isRootFile) {
     startMkdir(file, name);
   } else {
